@@ -9,7 +9,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
-from tensorflow.keras.datasets import mnist
 from tensorflow.keras import layers
 import os
 
@@ -169,44 +168,6 @@ def main():
 
         # Display the predicted digit and confidence score
         st.write(f"Predicted Digit: {digit} (Confidence: {confidence:.2f})")
-def debug_preprocessing(pil_image):    
-    # Display the original image
-    st.image(pil_image, caption="Original Image", use_column_width=True)
-    
-    # Check the size of the original image
-    st.write("Original Image Size:", pil_image.size)
-
-    # Resize the image
-    resized_image = pil_image.resize((28, 28))
-    
-    # Display the resized image
-    st.image(resized_image, caption="Resized Image", use_column_width=True)
-    
-    # Check the size of the resized image
-    st.write("Resized Image Size:", resized_image.size)
-
-    # Convert the resized image to a numpy array
-    image_array = np.array(resized_image)
-    
-    # Check the shape and datatype of the numpy array
-    st.write("Image Array Shape:", image_array.shape)
-    st.write("Image Array Dtype:", image_array.dtype)
-
-    # Normalize the image array
-    normalized_image = image_array / 255.0
-    
-    # Display the normalized image
-    st.image(normalized_image, caption="Normalized Image", use_column_width=True)
-
-    # Check the min and max pixel values after normalization
-    st.write("Min Pixel Value after Normalization:", np.min(normalized_image))
-    st.write("Max Pixel Value after Normalization:", np.max(normalized_image))
-
-    # Add an extra dimension to match the model's input shape
-    preprocessed_image = normalized_image[np.newaxis, ...]
-    
-    # Check the shape of the preprocessed image
-    st.write("Preprocessed Image Shape:", preprocessed_image.shape)
 
 if __name__ == "__main__":
     main()
